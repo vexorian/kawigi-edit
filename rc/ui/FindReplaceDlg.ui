@@ -1,0 +1,35 @@
+<JDialog>
+	<HorizontalPanel>
+		<VerticalPanel>
+			<HorizontalPanel>
+				<VerticalPanel>
+					<ActionLabel Action="actFindField" />
+					<ActionLabel Action="actReplaceField" />
+				</VerticalPanel>
+				<VerticalPanel>
+					<ActionTextField Action="actFindField" />
+					<ActionTextField Action="actReplaceField" />
+				</VerticalPanel>
+			</HorizontalPanel>
+			<HorizontalPanel>
+				<VerticalPanel BorderTitle="Options">
+					<ActionStateCheckBox Action="actCaseSensitive" />
+					<ActionStateCheckBox Action="actWholeWord" />
+				</VerticalPanel>
+				<VerticalPanel BorderTitle="Use:">
+					<ActionStateRadioButton Action="actLiteral" />
+					<ActionStateRadioButton Action="actWildCards" />
+					<ActionStateRadioButton Action="actRegex" />
+				</VerticalPanel>
+			</HorizontalPanel>
+		</VerticalPanel>
+		<VerticalPanel>
+			<JButton Action="actFindNext" />
+			<HideableButton Action="actFindDlg" />
+			<HideableButton Action="actReplaceDlg" />
+			<HideableButton Action="actReplace" />
+			<HideableButton Action="actReplaceAll" />
+			<JButton Action="actCloseFindReplaceDlg" />
+		</VerticalPanel>
+	</HorizontalPanel>
+</JDialog>

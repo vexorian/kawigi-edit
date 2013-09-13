@@ -1,0 +1,184 @@
+<HorizontalPanel>
+	<VerticalPanel>
+		<JTabbedPane>
+			<JPanel Name="General/Testing">
+				<VerticalPanel>
+					<VerticalPanel BorderTitle="Files">
+						<FilePanel Action="actLocalDirField"/>
+						<GridPanel GridDimensions="2,2">
+                            <ActionStateCheckBox Action="actAutoFileSync"/>
+                            <ActionStateCheckBox Action="actSaveStatement"/>
+                            <ActionStateCheckBox Action="actPreferFileOpen"/>
+                            <ActionStateCheckBox Action="actIgnoreTopCoderCode"/>
+                        </GridPanel>
+					</VerticalPanel>
+					<VerticalPanel BorderTitle="Behavior">
+                        <ActionStateCheckBox Action="actLogByDefault"/>
+                        
+						<HorizontalPanel>
+							<ActionLabel Action="actTimeout"/>
+							<ActionSpinner Action="actTimeout"/>
+						</HorizontalPanel>
+						<JLabel Text="Note that the timeout is for"/>
+						<JLabel Text="all test cases combined!"/>
+				    </VerticalPanel>
+
+					<VerticalPanel BorderTitle="Output / Log panels">
+						<FontPanel Action="actTestFont"/>
+						<GridPanel GridDimensions="1,2">
+							<ColorSwatchDropdown Action="actTestBackground"/>
+							<ColorSwatchDropdown Action="actTestForeground"/>
+						</GridPanel>
+					</VerticalPanel>
+					<VerticalPanel BorderTitle="Problem Timer">
+						<GridPanel GridDimensions="3,2">
+							<ActionLabel Action="actTimerDelay"/>
+							<ActionSpinner Action="actTimerDelay"/>
+							<ColorSwatchDropdown Action="actTimerLEDColor" />
+							<ColorSwatchDropdown Action="actTimerBGColor" />
+							<ColorSwatchDropdown Action="actTimerUnlitColor" />
+							<ActionStateCheckBox Action="actShowTimer"/>
+						</GridPanel>
+					</VerticalPanel>
+				</VerticalPanel>
+			</JPanel>
+			<JPanel Name="Editor">
+				<VerticalPanel>
+					<VerticalPanel BorderTitle="Editor Settings">
+						<HorizontalPanel>
+							<GridPanel GridDimensions="8,2">
+								<ColorSwatchDropdown Action="actForegroundColor"/>
+								<ColorSwatchDropdown Action="actBackgroundColor"/>
+								<ColorSwatchDropdown Action="actSelectionColor"/>
+								<ColorSwatchDropdown Action="actSelectedTextColor"/>
+								<ColorSwatchDropdown Action="actSyntaxKeywordColor"/>
+								<ColorSwatchDropdown Action="actSyntaxTypeColor"/>
+								<ColorSwatchDropdown Action="actSyntaxOperatorColor"/>
+								<ColorSwatchDropdown Action="actSyntaxStringColor"/>
+								<ColorSwatchDropdown Action="actSyntaxCommentColor"/>
+								<ColorSwatchDropdown Action="actSyntaxDirectiveColor"/>
+								<ColorSwatchDropdown Action="actSyntaxClassColor"/>
+								<ColorSwatchDropdown Action="actSyntaxTagColor"/>
+								<ColorSwatchDropdown Action="actMatchingColor"/>
+								<ActionStateCheckBox Action="actDoMatching"/>
+								<ActionLabel Action="actTabWidth"/>
+								<ActionSpinner Action="actTabWidth"/>
+							</GridPanel>
+						</HorizontalPanel>
+						<FontPanel Action="actCodeFont"/>
+					</VerticalPanel>
+				</VerticalPanel>
+			</JPanel>
+			<JPanel Name="Languages">
+			    <JTabbedPane>
+                    <JPanel Name="Java">
+                        <HorizontalPanel BorderTitle="Java settings">
+                            <GridPanel GridDimensions="4,1">
+                                <ActionLabel Action="actJavaFileName"/>
+                                <ActionLabel Action="actJavaCompileCommand"/>
+                                <ActionLabel Action="actJavaRunCommand"/>
+                                <ActionLabel Action="actJavaOverride"/>
+                            </GridPanel>
+                            <GridPanel GridDimensions="4,1">
+                                <ActionTextField Action="actJavaFileName" Columns="37"/>
+                                <ActionTextField Action="actJavaCompileCommand" Columns="37"/>
+                                <ActionTextField Action="actJavaRunCommand" Columns="37"/>
+                                <FilePanel Action="actJavaOverride"/>
+                            </GridPanel>
+                        </HorizontalPanel>
+                    </JPanel>
+                    <JPanel Name="C++">
+                        <HorizontalPanel BorderTitle="C++ settings">
+                            <GridPanel GridDimensions="8,1">
+                                <ActionLabel Action="actCPPFileName"/>
+                                <ActionLabel Action="actCPPCompileCommand"/>
+                                <ActionLabel Action="actCPPRunCommand"/>
+                                <ActionLabel Action="actCPPOverride"/>
+                                <ActionLabel Action="actCPPLLType"/>
+                                <ActionLabel Action="actCPPLLConst"/>
+                                <JLabel Text=""/>
+                                <JLabel Text=""/>
+                            </GridPanel>
+                            <GridPanel GridDimensions="8,1">
+                                <ActionTextField Action="actCPPFileName" Columns="37"/>
+                                <ActionTextField Action="actCPPCompileCommand" Columns="37"/>
+                                <ActionTextField Action="actCPPRunCommand" Columns="37"/>
+                                <FilePanel Action="actCPPOverride"/>
+                                <ActionTextField Action="actCPPLLType" Columns="37"/>
+                                <GridPanel GridDimensions="1,4">
+                                    <ActionLabel Action="actCPPLLPrefix"/>
+                                    <ActionTextField Action="actCPPLLPrefix" Columns="7"/>
+                                    <ActionLabel Action="actCPPLLPostfix"/>
+                                    <ActionTextField Action="actCPPLLPostfix" Columns="7"/>
+                                </GridPanel>
+                                <ActionStateCheckBox Action="actCPPCPP11"/>
+                                <ActionStateCheckBox Action="actAhmedAlyCleaner"/>
+                            </GridPanel>
+                        </HorizontalPanel>
+                    </JPanel>
+                    <JPanel Name="Python">
+                        <HorizontalPanel BorderTitle="Python settings">
+                            <GridPanel GridDimensions="4,1">
+                                <ActionLabel Action="actPyFileName"/>
+                                <ActionLabel Action="actPyCompileCommand"/>
+                                <ActionLabel Action="actPyRunCommand"/>
+                                <ActionLabel Action="actPyOverride"/>
+                            </GridPanel>
+                            <GridPanel GridDimensions="4,1">
+                                <ActionTextField Action="actPyFileName" Columns="37"/>
+                                <ActionTextField Action="actPyCompileCommand" Columns="37"/>
+                                <ActionTextField Action="actPyRunCommand" Columns="37"/>
+                                <FilePanel Action="actPyOverride"/>
+                            </GridPanel>
+                        </HorizontalPanel>
+                    </JPanel>
+                    <JPanel Name="C#">
+                        <HorizontalPanel BorderTitle="C# settings">
+                            <GridPanel GridDimensions="4,1">
+                                <ActionLabel Action="actCSharpFileName"/>
+                                <ActionLabel Action="actCSharpCompileCommand"/>
+                                <ActionLabel Action="actCSharpRunCommand"/>
+                                <ActionLabel Action="actCSharpOverride"/>
+                            </GridPanel>
+                            <GridPanel GridDimensions="4,1">
+                                <ActionTextField Action="actCSharpFileName" Columns="37"/>
+                                <ActionTextField Action="actCSharpCompileCommand" Columns="37"/>
+                                <ActionTextField Action="actCSharpRunCommand" Columns="37"/>
+                                <FilePanel Action="actCSharpOverride"/>
+                            </GridPanel>
+                        </HorizontalPanel>
+                    </JPanel>
+                    <JPanel Name="vb">
+                        <HorizontalPanel BorderTitle="Visual Basic settings">
+                            <GridPanel GridDimensions="4,1">
+                                <ActionLabel Action="actVBFileName"/>
+                                <ActionLabel Action="actVBCompileCommand"/>
+                                <ActionLabel Action="actVBRunCommand"/>
+                                <ActionLabel Action="actVBOverride"/>
+                            </GridPanel>
+                            <GridPanel GridDimensions="4,1">
+                                <ActionTextField Action="actVBFileName" Columns="37"/>
+                                <ActionTextField Action="actVBCompileCommand" Columns="37"/>
+                                <ActionTextField Action="actVBRunCommand" Columns="37"/>
+                                <FilePanel Action="actVBOverride"/>
+                            </GridPanel>
+                        </HorizontalPanel>        
+                    </JPanel>
+			    </JTabbedPane>
+			</JPanel>
+			<VerticalPanel Name="Template Editor">
+				<EditorPanel DispatcherName="TemplateEditor" />
+				<HorizontalPanel>
+					<JButton Action="actOpenTemplate"/>
+					<JButton Action="actSaveTemplate"/>
+					<JButton Action="actSaveTemplateAs"/>
+					<JButton Action="actOpenDefaultTemplate"/>
+				</HorizontalPanel>
+			</VerticalPanel>
+		</JTabbedPane>
+		<JPanel>
+			<JButton Action="actCommitConfig"/>
+			<JButton Action="actCancelConfig"/>
+		</JPanel>
+	</VerticalPanel>
+</HorizontalPanel>

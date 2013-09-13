@@ -1,0 +1,14 @@
+Imports Microsoft.VisualBasic
+Imports System
+Imports System.Collections
+Imports System.Text
+
+
+Public Class <%:class-name%>
+	Public Function <%:method-name%>(<%:byval-param-list%>) As <%:return-type%>
+		<%:set-caret%>
+	End Function
+End Class
+
+<%:testing-code%>
+'Powered by <%:kawigi-edit-version%>!

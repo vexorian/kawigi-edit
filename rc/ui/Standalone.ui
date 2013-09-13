@@ -1,0 +1,31 @@
+<JFrame Title="KawigiEdit 2.1" DispatcherName="Window">
+	<VerticalPanel>
+		<HorizontalPanel>
+			<ProblemTimer DispatcherName="Timer"/>
+			<JTabbedPane DispatcherName="TabbedPane">
+				<EditorPanel Name="Source Code" DispatcherName="EditorPanel" />
+				<EditorPanel Name="Test Code" DispatcherName="TestCode" />
+				<SimpleOutputComponent DispatcherName="Compile" Name="Compile"/>
+				<SimpleOutputComponent DispatcherName="Output" Name="Output"/>
+				     
+				<VerticalPanel Name="Local Code">
+					<EditorPanel DispatcherName="LocalCode" />
+					<JPanel>
+						<JButton Action="actOpenLocal"/>
+					</JPanel>
+				</VerticalPanel>
+                <SimpleOutputComponent DispatcherName="Log" Name="Log"/>
+			</JTabbedPane>
+		</HorizontalPanel>
+		<HorizontalPanel>
+			<JButton Action="actGenerateCode"/>
+			<!-- Challenge tools -->
+			<JButton Action="actLaunchConfig"/>
+			<JButton Action="actRunTests"/>
+			<JButton Action="actSaveLocal"/>
+			<JButton Action="actLoad"/>
+			<JButton Action="actKillProcess"/>
+			<JButton Action="actTestCases"/>
+		</HorizontalPanel>
+	</VerticalPanel>
+</JFrame>

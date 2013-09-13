@@ -1,0 +1,9 @@
+import math,string,itertools,fractions,heapq,collections,re,array,bisect,random
+
+class <%:class-name%>:
+    def <%:method-name%>(self, <%:param-list%>):
+        <%:set-caret%>
+        return
+
+<%:testing-code%>
+#Powered by <%:kawigi-edit-version%>!

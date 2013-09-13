@@ -1,0 +1,20 @@
+<JPopupMenu>
+	<Category MenuID="RootSnippetCategory"/>
+	<JMenuItem Action="actAddSnippetDlg"/>
+	<JSeparator/>
+	<JMenuItem Action="actInsertTestCode"/>
+    <JMenuItem Action="actTestCases"/>
+    <JMenuItem Action="actOutsideMode"/>
+	<JSeparator/>
+	<JMenuItem Action="actCut"/>
+	<JMenuItem Action="actCopy"/>
+	<JMenuItem Action="actPaste"/>
+	<JMenuItem Action="actDelete"/>
+	<JMenuItem Action="actSelectAll"/>
+	<JSeparator/>
+	<JMenuItem Action="actFindDlg"/>
+	<JMenuItem Action="actReplaceDlg"/>
+	<JSeparator/>
+	<JMenuItem Action="actUndo"/>
+	<JMenuItem Action="actRedo"/>
+</JPopupMenu>

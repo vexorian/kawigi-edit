@@ -1,0 +1,19 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Text;
+using System.Text.RegularExpressions;
+
+
+public class <%:class-name%>
+{
+	public <%:return-type%> <%:method-name%>(<%:param-list%>)
+	{
+		<%:set-caret%>
+	}
+
+<%:testing-code%>
+}
+
+//Powered by <%:kawigi-edit-version%>!

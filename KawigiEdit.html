@@ -1,0 +1,153 @@
+<html>
+	<head>
+		<title>KawigiEdit Documentation</title>
+		<style type="text/css">
+			h1 {background-color: #bbbbff; text-align: center}
+			h2,h4 {background-color: #bbbbff};
+			body {background-color: #ffffff}
+		</style>
+	</head>
+	<body>
+		<h1>KawigiEdit 2.0 - An Integrated Plugin for TopCoder</h1>
+		<p>KawigiEdit is a full-blown TopCoder Editor plugin with all the features I decided I wanted to have in it.</p>
+		<p>Among the most useful features in this plugin are:</p>
+		<ul>
+			<li>Syntax highlighting and line numbering in the editor and auto-indent.</li>
+			<li>Undo/Redo support</li>
+			<li>Advanced Search and Replace with support for literal strings, wildcards, regular expressions, case-insensitivity and word boundary matching.</li>
+			<li>Generates testing code from the example test cases in the problem statement.</li>
+			<li>Times the execution of each test case in the test code.</li>
+			<li>Saves your code locally, compiles it, and runs the test cases all at the click of a button.</li>
+			<li>Provides quick access to past code saved by KawigiEdit</li>
+			<li>Allows you to save a database of code snippets for general use.</li>
+			<li>Configurable to your preferences of colors, fonts, etc, as well as filenames, compile and run commands, tab width, etc. (so it can be configured to work on any platform with any compilers)</li>
+			<li>Complete support for C++, Java, C# and Visual Basic (suggestions welcome on improving this)!</li>
+			<li>Block matching - for language constructs that have a logical beginning and ending, if your cursor is over one end of it, the opposite end is highlighted</li>
+			<li>In addition to the normal block matching, a graphical bracket next to the line numbers shows the span of curly braces that you are currently in.</li>
+			<li>Mouse wheel scrolling (this seems to be extremely important to some people :-p).</li>
+			<li>Drag and drop code, if you enjoy doing that.</li>
+			<li>Configurable tab width.</li>
+			<li>Simple code template customization (note - KawigiEdit 2.0 no longer supports compiled templates from KawigiEdit 1.1.  This makes it easier for people to use who don't have a Java compiler handy, but is slightly less powerful).</li>
+			<li>Can save your code to disk or load it back up from disk.  Trust me, if your computer ever crashes during a match, this will make you happy.</li>
+			<li>Several standard editing features.</li>
+			<li>Open source and free to be hacked up by YOU if it's missing anything.</li>
+		</ul>
+		
+		<h2>System Requirements</h2>
+		<ul>
+			<li>Java 1.5 Runtime Environment!  The arena now requires Java 1.4, as did KawigiEdit 1.x.  KawigiEdit 2.0 uses lots of the new Java 1.5 features, so you will need Java 1.5 to use KawigiEdit 2.0.</li>
+			<li>I recommend having at least about a 500 Mhz Intel-type processor, or something comparable.  It will run on a slower system, as well.  For computers at about that level, text rendering may start to lag if you have a lot of code in there.  Eventually I'll get working on that so that the general experience is better.</li>
+			<li>I recommend having at least 64 MB of RAM, but I've never actually tested it with less than 200 MB of RAM.  I don't suspect KawigiEdit is likely to use nearly that much, let me know if it ever has more than 40 MB, because that's where I think it's getting absurd, even with a graphical Java application.</li>
+			<li>If you want to use the testing features, you must have a compiler (and possibly runtime) installed for your language(s).</li>
+		</ul>
+		
+		<h2>Installing KawigiEdit</h2>
+		<p>How to install KawigiEdit in 10 easy steps:</p>
+		<ol>
+			<li>Download the latest KawigiEdit jar to your computer (and remember where you saved it).</li>
+			<li>Start the TopCoder Arena applet.</li>
+			<li>From the Options menu, choose "Editor".  The Editor Preferences dialog should come up.</li>
+			<li>Click on the "Add" button.  A dialog titled "Enter Plugin Information" should pop up.</li>
+			<li>For "Name", enter "KawigiEdit" (or whatever you want it to be called, it doesn't really matter)</li>
+			<li>For "EntryPoint", enter "kawigi.KawigiEdit" (this one does matter).</li>
+			<li>For "ClassPath", hit "Browse" and find the KawigiEdit jar.  You should not have a previous version of KawigiEdit in the global classpath (in the text field on the top of the Editor Preferences Dialog).</li>
+			<li>Once those are entered in correctly, click OK.</li>
+			<li>If you want KawigiEdit to be used as your default editor, check the "Default" box next to the new entry in the table.  I recommend setting it as your default editor, of course.</li>
+			<li>Click "Save".  If you get errors here, make sure that you are absolutely using Java 1.5, and that no previous version of KawigiEdit is in the classpath, and if that's all in order and you're still having problems, contact me personally or see if you can find anyone in the arena who knows a lot KawigiEdit.</li>
+		</ol>
+		<p>Now KawigiEdit will be ready to use!  Of course, to get the most out of KawigiEdit, you will probably want to tweak the configuration.</p>
+		<h2>Configuring KawigiEdit</h2>
+		<p>Assuming everything worked without any error messages, KawigiEdit is now installed and ready to use.  However, it is advisable to do a few more things, to make sure it is all configured correctly for your system (and to your liking).</p>
+		<p>To configure KawigiEdit, simply select it on the "Editor Preferences" dialog and hit the "Configure" button.  A dialog will come up with three tabs for "General/Testing", "Editor" and "Languages".</p>
+		<h4>General Settings</h4>
+		<p>One setting you are likely to want to customize is where on your computer KawigiEdit will save your code.  By default, it makes a directory called "testprograms" wherever the applet's current working directory is (in Windows this appears to be your desktop, in Linux it uses your home directory).  Use the Browse button or directly enter the name of the folder you want to use.  You can also configure here how long KawigiEdit should wait to attempt to forcibly terminate a process it starts.</p>
+		<h4>Testing Settings</h4>
+		<p>Here, you can change the font and colors of the testing console panel.  This is where the output from your programs and from the compiler will be displayed when you use the local compile and test features.</p>
+		<h4>Problem Timer</h4>
+		<p>You can use this section to customize how often the problem timer updates, what colors it uses, and even turn the darn thing off.  Rest assured that if you turn it off (even if you turn it off with the editor running), it will be removed and the thread it was running on will be killed, so you don't have to worry about it consuming any CPU time.  If you like it but are worried about CPU time, just lengthen the update delay.</p>
+		<h4>Editor Settings</h4>
+		<p>Here, you can change the font and colors used in the editor and local code display.  This includes syntax-related coloring, like:</p>
+		<ul>
+			<li>Keywords : if, class, public, etc.</li>
+			<li>Types : float, int, boolean, decimal, etc.  Also used for constant values like null, true and false.</li>
+			<li>Operators : +, -, *, /, sizeof, instanceof, typeof, etc.</li>
+			<li>Strings/Characters : "In this format, or like" 'x'</li>
+			<li>Comments: /*like this */ //or like this 'or in VB, like this!</li>
+			<li>Compiler Directives: #include, #define, #region, etc.</li>
+			<li>Standard library classes: vector (C++), StringTokenizer (java), etc.</li>
+			<li>Template tags: specifically for when you're editing your template in my template editor.</li>
+		</ul>
+		<p>You can also turn on or off parentheses (, etc.) matching and specify what color the highlights should be (I recommend a color that is not too much different from your background color) and set your tab width.</p>
+		<h4>Language Settings</h4>
+		<p>On this tab, you configure how to save, compile and run your programs locally.  Note that $PROBLEM$ will substitute the problem class name in, and $CWD$ will substitute the current working directory <strong>for the run command only</strong>.  The CWD is not available for the filename and compile command (You may assume that you are in the current working directory).  You can also use the Template Override field to pick a .ket file to use as a template for each language.</p>
+		<p>The default settings should work for most people whose system is configured exactly like mine.  Fat chance, eh?</p>
+		<p>The default Java settings should work beautifully if you have Sun's Java SDK installed, and Java's bin directory is in your default system path.</p>
+		<p>The default C++ settings should be correct if you use g++, and it is in the path, for either Windows or *nix.</p>
+		<p>The default C# and VB settings should be correct if you use Windows and have csc and vbc in your system path, or *nix with mono installed and in the system path.</p>
+		<p>The rule of thumb on these settings is that you should try them out, and if they work, don't mess with them.  KawigiEdit has been made to work with probably half a dozen C++ compilers before, so if you're wondering if it can work with yours, the answer is probably <i>yes</i>.</p>
+		<h4>Template Editor</h4>
+		<p>This is the place to edit your code templates, which are parsed and expanded when you open a problem or hit "Generate Code".</p>
+		<p>The easiest way to get started is to click on "Open Default", and pick which template (.ket file) you want to edit.  Change anything you want, and click save (or save as) and you'll be prompted where to save it.  After saving, KawigiEdit will ask you if you want to set it as the default template for some language, and if you click yes, you're done!  The Template Override should be filled in for that language on the Languages tab.</p>
+		<h2>Using KawigiEdit - A Walkthrough</h2>
+		<p>Here is a quick example of how to use KawigiEdit in the Arena.</p>
+		<ul>
+			<li>Log on to the applet and go to practice room 152 (SRM 191 Division 1).</li>
+			<li>Skeleton and testing code should have been automatically generated in your language of choice by KawigiEdit.  If you would like to use a different language, choose it at the top of the window and then press "Generate code".</li>
+			<li>You should also notice that KawigiEdit inserted a "KawigiEdit tag" that looks like <tt>&lt;%:testing-code%&gt;</tt>.  When you save your code locally, the testing code will be inserted at that point.  When you submit your code to TopCoder, that tag is removed.  If you ever reopen a problem (and previous code you sent to TopCoder is restored from the server), you will have to reinsert that tag.</li>
+			<li>This problem involves parsing comma-delimited lists of integers from the given strings.  Write a function called "splitInts" that returns an array/vector of integers and takes a string argument and tokenizes the string into the numbers.  An example of a Java implementation might be:
+			<pre>
+	int[] splitInts(String s)
+	{
+		String[] split = s.split("[ ,]+");
+		int[] ret = new int[split.length];
+		for (int i=0; i&lt;ret.length; i++)
+			ret[i] = Integer.parseInt(split[i]);
+		return ret;
+	}
+			</pre></li>
+			<li>Now select the method you wrote.  You can do this by dragging in the code pane, or by clicking and dragging on the line numbers.</li>
+			<li>Right click on the code pane with the method selected, and go to "Add Snippet".  A dialog should appear with two text fields and a couple buttons.  The method name ("splitInts") should have appeared as the suggested Snippet name.</li>
+			<li>Enter a category (Such as "string" or "string/parse" - use a '/' to denote "folders" in your categories) and hit enter or click on the "Add Snippet" button.</li>
+			<li>Deselect your method.  If you successfully added that method as a snippet, you should be able to right click on the code pane now and find it in the "Snippet" submenu.  Try clicking on it.  You'll notice that it pastes that code wherever your cursor was.  These snippets are saved on your hard drive, so that they will be available to you later when you don't have time to type nice functions during the SRM.</li>
+			<li>Hit ctrl+F and ctrl+H and try playing with the search and replace options.  There's a lot of power in the Regular Expression option - For more information, go to the API documentation at http://java.sun.com/ and read the specification on java.util.regex.Pattern.  Back-references may be used in the replacement using $1, $2, etc.  Back-references may even be usable in the pattern using \1, \2, etc.</li>
+			<li>Type a few things, and then hit ctrl+z a few times.  It should undo your edits one thing at a time.  Then try pushing ctrl+y - this should redo any undone edits.</li>
+			<li>Now that you've messed around with it a bit, write the code in the correctVolume method.  My Java version looks like this:
+			<pre>
+	public int correctVolume(String[] queries, int numberOfBoxes, int ithBox)
+	{
+		int ret = 0;
+		for (int i=0; i&lt;queries.length; i++)
+		{
+			int[] info = splitInts(queries[i]);
+			if (info[0] == ithBox || info[1] == ithBox)
+				ret = Math.max(ret, info[2]);
+		}
+		return ret;
+	}
+			</pre></li>
+			<li>Once you're done typing it in, click on "Run Tests", or hit Alt+R.  This should save the code to the local directory you have configured, compile it and run it.  It will also automatically switch control over to the "Output" tab.  If the Output tab displays something like <tt>My error: java.io.IOException: CreateProcess: &lt;some kind of command&gt; error=2</tt>, then either your run or compile command is not configured correctly.  It could mean that your compiler isn't in the path or isn't in the place that it's configured to be.  Go back to the settings dialog and see if you can figure it out.  You may have also gotten compiler errors into the Compile console.  Fix them!  Otherwise, you got a series of test results.  If it tells you you're a stud, and you think you don't have any other hidden bugs, go ahead and click compile and submit on the applet (I made it a habit to click on TopCoder's "compile" and my "Run Tests" at the same time so I don't forget to do it).</li>
+			<li>Also take a look at the Test Code tab.  This code is the code that is inserted into your source code wherever &lt;%:testing-code%&gt; is found.</li>
+			<li>After submitting your code, close the problem and open it again.  If you click on "Run Tests" again, you will probably get an error that there is no main method.  Move your cursor to the place where the testing code should be generated (should be after the solution class in C++ or VB, or in the solution class in Java or C#), and reinsert the testing code tag.  You can do this by either typing <tt>&lt;%:testing-code%&gt;</tt>, right clicking and selecting "Test Code Tag", or hitting ctrl+I.</li>  If you already had code or lost that tag somehow, you can move your cursor to some place where the testing code could go and type it in, or hit Ctrl+E, or right click and select "Test Code Tag".  This code is omitted when your code is submitted to TopCoder.</li>
+		</ul>
+		<h2>Editing KawigiEdit</h2>
+		<p>I included the source to KawigiEdit for a reason - I think that it's a good place to learn things from (both in design and in using the plugin interface), and I don't think it's perfect for everyone.  If you are familiar with Java and want to customize KawigiEdit further than can be done through the settings dialog, you can unpack it and start hacking at it.  If you find ways to improve it that you think would be useful to others, too, please let me know what you did and how/why you did it.</p>
+		<p>The standard way to unpack the jar would be to use Sun's jar utility (part of the Java SDK) like this:</p>
+		<pre>
+	jar -xf KawigiEdit.jar
+		</pre>
+		<p>You can also rename it to KawigiEdit.zip and extract it with any program that can extract zip files.</p>
+		<p>To make the applet use the extracted plugin instead of the jarred one, set the directory you extracted it into as the classpath (rather than the jar).  This directory should have a directory called "kawigi" in it (but it shouldn't be the directory called "kawigi").</p>
+		<p>You'll also notice that this html file, a folder for the manifest, a resource folder, and a folder called "docs" popped out of the jar.  In the docs folder, you'll find full documentation of the classes included in the jar (sorry if it's not quite accurate).  This may help you to know where to start in changing stuff.</p>
+		<h2>Contact Info</h2>
+		<p>Anyone is welcome to contact me about features they hacked in, features they think I should add, problems, suggestions, etc.  Try to keep the "uR pLu61n suX0rZ, j00z sh0uLD uZ3 P0p53di7!" emails to a minimum.</p>
+		<ul>
+			<li>Email: kawigi at yahoo dot com</li>
+			<li>AIM : kawigi</li>
+			<li>MSN IM : kawigi@hotmail.com (note: I won't get emails sent to this address)</li>
+			<li>Y! : kawigi</li>
+			<li>ICQ : #6944879</li>
+			<li>KawigiEdit Website: <a href="http://topcoder.yajags.com/">http://topcoder.yajags.com/</a></li>
+			<li>KawigiEdit Wiki: <a href="http://topcoder.yajags.com/wiki.cgi">http://topcoder.yajags.com/wiki.cgi</a></li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,10 @@
+<JDialog>
+	<GridPanel GridDimensions="3,2">
+		<ActionLabel Action="actSnippetName"/>
+		<ActionTextField Action="actSnippetName"/>
+		<ActionLabel Action="actSnippetCategory"/>
+		<ActionTextField Action="actSnippetCategory"/>
+		<JPanel/>
+		<JButton Action="actAddSnippet"/>
+	</GridPanel>
+</JDialog>
