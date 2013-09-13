@@ -14,4 +14,4 @@ public class <%:class-name%>
 <%:testing-code%>
 }
 
-//Powered by <%:kawigi-edit-version%>!
+//<%:kawigi-edit-version%>

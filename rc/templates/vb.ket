@@ -11,4 +11,4 @@ Public Class <%:class-name%>
 End Class
 
 <%:testing-code%>
-'Powered by <%:kawigi-edit-version%>!
+'<%:kawigi-edit-version%>

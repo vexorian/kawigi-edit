@@ -6,4 +6,4 @@ class <%:class-name%>:
         return
 
 <%:testing-code%>
-#Powered by <%:kawigi-edit-version%>!
+#<%:kawigi-edit-version%>

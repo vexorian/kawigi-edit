@@ -4,15 +4,19 @@
 		<JTabbedPane DispatcherName="TabbedPane">
 			<EditorPanel Name="Source Code" DispatcherName="EditorPanel" />
 			<EditorPanel Name="Test Code" DispatcherName="TestCode" />
-			<SimpleOutputComponent DispatcherName="Compile" Name="Compile"/>
-            <SimpleOutputComponent DispatcherName="Output" Name="Output"/>
-			<VerticalPanel Name="Local Code">
-				<EditorPanel DispatcherName="LocalCode" />
-				<JPanel>
-					<JButton Action="actOpenLocal"/>
-				</JPanel>
-			</VerticalPanel>
-            <SimpleOutputComponent DispatcherName="Log" Name="Log"/>
+			<!--
+			     <vexorian> Remove output, compile and local code tabs:
+                       <SimpleOutputComponent DispatcherName="Compile" Name="Compile"/>
+                       <SimpleOutputComponent DispatcherName="Output" Name="Output"/>
+                       <VerticalPanel Name="Local Code">
+                           <EditorPanel DispatcherName="LocalCode" />
+                           <JPanel>
+                               <JButton Action="actOpenLocal"/>
+                           </JPanel>
+                       </VerticalPanel>
+			     </vexorian>
+			-->
+			<SimpleOutputComponent DispatcherName="Log" Name="Log"/>
 		</JTabbedPane>
 	</HorizontalPanel>
 	<HorizontalPanel>

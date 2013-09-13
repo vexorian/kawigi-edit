@@ -22,7 +22,6 @@
 
 using namespace std;
 
-
 class <%:class-name%> {
 public:
 	<%:return-type%> <%:method-name%>(<%:param-list%>) {
@@ -30,6 +29,5 @@ public:
 	}
 };
 
-
 <%:testing-code%>
-//Powered by <%:kawigi-edit-version%>!
+//<%:kawigi-edit-version%>

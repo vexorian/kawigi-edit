@@ -22,124 +22,126 @@ import kawigi.util.StringsUtil;
 @SuppressWarnings("serial")
 public class LocalTestAction extends DefaultAction
 {
-	/**
+    /**
 	 *	Global process - we only allow one process to be running from KawigiEdit
 	 *	at a time, so we don't go crazy messing things up on people's machines.
-	 **/
-	private static ProcessContainer proc;
-	
-	/**
-	 * Last time when file was saved
-	 */
-	private static long lastSaveTime;
-	private static boolean isLoadFileAsked;
+     **/
+    private static ProcessContainer proc;
+    
+    /**
+     * Last time when file was saved
+     */
+    private static long lastSaveTime;
+    private static boolean isLoadFileAsked;
 	private static boolean isInLoadSaveAction = false;
-	private static LocalTestAction saveInstance;
-	private static LocalTestAction loadInstance;
-
+    private static LocalTestAction saveInstance;
+    private static LocalTestAction loadInstance;
+    
     private static long syncErrorMessageSaveTime = -1;
-	/**
+    
+
+    /**
 	 *	Constructs a new LocalTestAction for the given ActID.
-	 **/
-	public LocalTestAction(ActID cmdid)
-	{
-		super(cmdid);
-		if (cmdid == ActID.actSaveLocal)
-			saveInstance = this;
-		else if (cmdid == ActID.actLoad)
-			loadInstance = this;
-	}
+     **/
+    public LocalTestAction(ActID cmdid)
+    {
+        super(cmdid);
+        if (cmdid == ActID.actSaveLocal)
+            saveInstance = this;
+        else if (cmdid == ActID.actLoad)
+            loadInstance = this;
+    }
 
-	/**
+    /**
 	 *	Returns true if this action can be executed.
-	 **/
-	public boolean isEnabled()
-	{
-		if (ProblemContext.getCurrentClass() == null)
-		{
-			// In standalone, we can always generate code (because we ask for
-			// the problem statement whenever the button is pushed).  In plugin
-			// mode, we can only generate code if we already have a
-			// ProblemComponent from the plugin interface.
-			return (cmdid == ActID.actGenerateCode && AppEnvironment.getEnvironment() != AppEnvironment.PluginMode) || cmdid == ActID.actOpenLocal;
-		}
-        if (cmdid == ActID.actKillProcess) {
-			return proc != null && !proc.isDone();
+     **/
+    public boolean isEnabled()
+    {
+        if (ProblemContext.getCurrentClass() == null)
+        {
+            // In standalone, we can always generate code (because we ask for
+            // the problem statement whenever the button is pushed).  In plugin
+            // mode, we can only generate code if we already have a
+            // ProblemComponent from the plugin interface.
+            return (cmdid == ActID.actGenerateCode && AppEnvironment.getEnvironment() != AppEnvironment.PluginMode) || cmdid == ActID.actOpenLocal;
         }
-		return true;
-	}
+        if (cmdid == ActID.actKillProcess) {
+            return proc != null && !proc.isDone();
+        }
+        return true;
+    }
 
-	/**
+    /**
 	 *	Runs the action!
-	 **/
-	public void actionPerformed(ActionEvent e)
-	{
-		ClassDecl cl = ProblemContext.getCurrentClass();
-		switch (cmdid)
-		{
-			case actGenerateCode:
-				if (AppEnvironment.getEnvironment() != AppEnvironment.PluginMode)
-				{
-					ProblemContext.setCurrentClass(cl = ClassDeclFactory.getClassDecl());
-					if (null == cl)
-						break;
-				}
+     **/
+    public void actionPerformed(ActionEvent e)
+    {
+        ClassDecl cl = ProblemContext.getCurrentClass();
+        switch (cmdid)
+        {
+            case actGenerateCode:
+                if (AppEnvironment.getEnvironment() != AppEnvironment.PluginMode)
+                {
+                    ProblemContext.setCurrentClass(cl = ClassDeclFactory.getClassDecl());
+                    if (null == cl)
+                        break;
+                }
 				generateStubCode();
 				Dispatcher.sourceCodeChanged();
-				break;
-			case actSaveLocal:
-				saveLocal();
-				break;
-			case actLoad:
-				loadFromLocal();
-				break;
-			case actRunTests:
-				saveLocal();
+                break;
+            case actSaveLocal:
+                saveLocal();
+                break;
+            case actLoad:
+                loadFromLocal();
+                break;
+            case actRunTests:
+                saveLocal();
 				compileLocal();
-				break;
-			case actKillProcess:
-				if (proc != null && !proc.isDone())
-					proc.kill();
-				// On occasion, we don't actually successfully kill the process,
-				// and trying again probably won't help.  This leaves the user
-				// in a state where they can't do any local compilation and
-				// testing until they close down the arena and open it and log
-				// back in again, hardly a state you want to be in for a match,
-				// regardless of how rare it might be.  In this case, we've done
-				// due diligence to kill the process but the OS or the program
-				// the user wrote won't let us, so we just nullify the proc so
-				// that the user can continue to work anyways.
-				proc = null;
-				break;
-			case actOpenLocal:
-				if (Dispatcher.getFileChooser().showOpenDialog(Dispatcher.getTabbedPane()) == JFileChooser.APPROVE_OPTION)
-				{
-					File f = Dispatcher.getFileChooser().getSelectedFile();
-					try
-					{
-						BufferedReader inFile = new BufferedReader(new FileReader(f));
-						String text = "";
-						String line;
-						while ((line = inFile.readLine()) != null)
-							text += line + "\n";
-						inFile.close();
-						String filename = f.getName();
-						EditorLanguage lang = LanguageFactory.getLanguage(filename.substring(filename.lastIndexOf('.')+1));
-						CodePane localCodePane = Dispatcher.getLocalCodePane();
-						localCodePane.setContentType("text/" + lang.toString().toLowerCase());
-						localCodePane.setText(text);
-						((JViewport)localCodePane.getParent()).setViewPosition(new Point(0, 0));
-					}
-					catch (IOException ex)
-					{
-						Dispatcher.getLocalCodePane().setText("IOException thrown!");
-					}
-					Dispatcher.getTabbedPane().setSelectedComponent(Dispatcher.getLocalCodeEditorPanel());
-				}
-				break;
-		}
-		Dispatcher.getGlobalDispatcher().UIRefresh();
-	}
+                break;
+            case actKillProcess:
+                if (proc != null && !proc.isDone())
+                    proc.kill();
+                // On occasion, we don't actually successfully kill the process,
+                // and trying again probably won't help.  This leaves the user
+                // in a state where they can't do any local compilation and
+                // testing until they close down the arena and open it and log
+                // back in again, hardly a state you want to be in for a match,
+                // regardless of how rare it might be.  In this case, we've done
+                // due diligence to kill the process but the OS or the program
+                // the user wrote won't let us, so we just nullify the proc so
+                // that the user can continue to work anyways.
+                proc = null;
+                break;
+            case actOpenLocal:
+                if (Dispatcher.getFileChooser().showOpenDialog(Dispatcher.getTabbedPane()) == JFileChooser.APPROVE_OPTION)
+                {
+                    File f = Dispatcher.getFileChooser().getSelectedFile();
+                    try
+                    {
+                        BufferedReader inFile = new BufferedReader(new FileReader(f));
+                        String text = "";
+                        String line;
+                        while ((line = inFile.readLine()) != null)
+                            text += line + "\n";
+                        inFile.close();
+                        String filename = f.getName();
+                        EditorLanguage lang = LanguageFactory.getLanguage(filename.substring(filename.lastIndexOf('.')+1));
+                        CodePane localCodePane = Dispatcher.getLocalCodePane();
+                        localCodePane.setContentType("text/" + lang.toString().toLowerCase());
+                        localCodePane.setText(text);
+                        ((JViewport)localCodePane.getParent()).setViewPosition(new Point(0, 0));
+                    }
+                    catch (IOException ex)
+                    {
+                        Dispatcher.getLocalCodePane().setText("IOException thrown!");
+                    }
+                    Dispatcher.getTabbedPane().setSelectedComponent(Dispatcher.getLocalCodeEditorPanel());
+                }
+                break;
+        }
+        Dispatcher.getGlobalDispatcher().UIRefresh();
+    }
 
 	public static void generateStubCode()
 	{
@@ -159,53 +161,52 @@ public class LocalTestAction extends DefaultAction
 		s = lang.getTestCode(cl);
 		testCodePane.setText(s);
 	}
-	
-	/**
+    /**
 	 *	Parses the text between "BEGIN KAWIGIEDIT TESTING" and "END KAWIGIEDIT TESTING"
-	 *  into test cases, inserts this code into TestPane and inserts into the code tag <%:testing-code%>.
-	 **/
+     *  into test cases, inserts this code into TestPane and inserts into the code tag <%:testing-code%>.
+     **/
 	protected void restoreTesting(StringBuilder text, ClassDecl cl, EditorLanguage lang)
 	{
-		StringBuilder tests = new StringBuilder(1000);
-		cl.removeAllTests();
-		lang.extractTestCases(text, cl, tests);
-		Dispatcher.getTestCodePane().setText(tests.toString());
-	}
+        StringBuilder tests = new StringBuilder(1000);
+        cl.removeAllTests();
+        lang.extractTestCases(text, cl, tests);
+        Dispatcher.getTestCodePane().setText(tests.toString());
+    }
 
-	/**
+    /**
 	 *	Removes from code all between "BEGIN CUT HERE" and "END CUT HERE".
-	 **/
-	protected void removeCutting(StringBuilder text) {
-		while (true) {
-			int ind = text.indexOf("BEGIN CUT HERE");
-			if (-1 == ind)
-				return;
+     **/
+    protected void removeCutting(StringBuilder text) {
+        while (true) {
+            int ind = text.indexOf("BEGIN CUT HERE");
+            if (-1 == ind)
+                return;
 			int	ind_s = StringsUtil.lastIndexOf(text, '\n', ind);
 			int	ind_e = text.indexOf("END CUT HERE", ind);
-			if (-1 == ind_e)
-				ind_e = text.length();
-			else {
-				ind_e = StringsUtil.indexOf(text, '\n', ind_e);
-				if (-1 == ind_e)
-					ind_e = text.length();
-				else
-					++ind_e;
-			}
-			StringsUtil.replace(text, ind_s + 1, ind_e, "");
-		}
-	}
+            if (-1 == ind_e)
+                ind_e = text.length();
+            else {
+                ind_e = StringsUtil.indexOf(text, '\n', ind_e);
+                if (-1 == ind_e)
+                    ind_e = text.length();
+                else
+                    ++ind_e;
+            }
+            StringsUtil.replace(text, ind_s + 1, ind_e, "");
+        }
+    }
 
-	private static File getSaveFileObj()
-	{
-		PrefProxy prefs = PrefFactory.getPrefs();
-		ClassDecl cl = ProblemContext.getCurrentClass();
-		if (cl == null)
-			return null;
-		
-		String filename = ProblemContext.getLanguage().getFileName(cl.getName());
-		return new File(prefs.getWorkingDirectory(), filename);
-	}
-	
+    private static File getSaveFileObj()
+    {
+        PrefProxy prefs = PrefFactory.getPrefs();
+        ClassDecl cl = ProblemContext.getCurrentClass();
+        if (cl == null)
+            return null;
+        
+        String filename = ProblemContext.getLanguage().getFileName(cl.getName());
+        return new File(prefs.getWorkingDirectory(), filename);
+    }
+    
     /**
 	 *	Saves the current problem to the local test directory.
      **/
@@ -257,7 +258,6 @@ public class LocalTestAction extends DefaultAction
         }
     }
 
-
 	public static synchronized void loadFromLocal()
 	{
 		isInLoadSaveAction = true;
@@ -308,23 +308,23 @@ public class LocalTestAction extends DefaultAction
 		}
 	}
 
-	
-	/**
-	 * Get last time when external file was saved
-	 * 
+    
+    /**
+     * Get last time when external file was saved
+     * 
 	 * @return		Last saving time
-	 */
-	public static long getLastSaveTime()
-	{
-		return lastSaveTime;
-	}
-	
-	public static void resetLastSaveTime()
-	{
-		lastSaveTime = 0;
-		isLoadFileAsked = false;
-	}
-	
+     */
+    public static long getLastSaveTime()
+    {
+        return lastSaveTime;
+    }
+    
+    public static void resetLastSaveTime()
+    {
+        lastSaveTime = 0;
+        isLoadFileAsked = false;
+    }
+    
     /**
 	 *	Compiles the saved code for this problem.
      **/
@@ -337,6 +337,13 @@ public class LocalTestAction extends DefaultAction
             comc = Dispatcher.getCompileComponent();
             logc = Dispatcher.getLogComponent();
             toTab = null;
+		    //<vexorian> Just kill the other process
+		    if ( ( proc!=null) && (! proc.isDone() ) )
+		    {
+		        proc.kill();
+		        proc=null;
+		    }
+		    //</vexorian>
 			if (proc == null || proc.isDone()) {
                 String command = ProblemContext.getLanguage().getCompileCommand(ProblemContext.getCurrentClass().getName(), PrefFactory.getPrefs().getWorkingDirectory().getPath());
 				if ( command.equals("")) {
